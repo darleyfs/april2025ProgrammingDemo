@@ -130,6 +130,7 @@
     <ClCompile Include="AprilPokemon.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Damage.h" />
     <ClInclude Include="Events.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="Move.h" />

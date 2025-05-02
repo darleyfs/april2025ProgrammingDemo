@@ -66,6 +66,11 @@ public:
 		return type2;
 	}
 
+	int GetCurrentHP() {
+		// TODO return HP field
+		return 0;
+	}
+
 	// Accept a move to be learned
 	bool LearnMove(Move move) {
 		
