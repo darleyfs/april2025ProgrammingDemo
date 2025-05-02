@@ -63,6 +63,8 @@ public:
 			}
 		}
 
+		// TODO: Add an announcement that a small creature was added!s
+
 		return result;
 	}
 

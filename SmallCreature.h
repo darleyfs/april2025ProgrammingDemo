@@ -96,6 +96,8 @@ public:
 			}
 		}
 
+		// TODO: Add an announcement that the move was learned
+
 		// Return the result
 		return result;
 	}
@@ -111,6 +113,8 @@ public:
 
 			if (i == position - 1) {
 				moves[i] = Move();
+			
+				// TODO: Add an announcment that the move was forgotten
 			}
 		}
 	}
