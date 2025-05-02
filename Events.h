@@ -23,7 +23,7 @@ public:
 
         // Player wakes up in their room
         UI::ShowMessage(playerName + " wakes up in their room...");
-	}
+    }
 
     static void WakeUp(std::string playerName) {
         std::vector<std::string> menuOptions = {
@@ -61,5 +61,34 @@ public:
                 break;
             }
         } while (invalid);
+    }
+
+    static void TouchGrass(std::string playerName) {
+        int choice = 0;
+        std::vector<std::string> menuOptions = {
+            "Touch grass",
+            "Do not touch grass"
+        };
+
+        UI::ShowMessage(playerName + " walks out into the sunlight,\n  and wanders around for a bit...");
+
+        do {
+            UI::ShowMessage(playerName + " stops briefly in front of a patch of grass\n  and begins to get a dangerous idea...");
+
+            choice = UI::DisplayMenu(menuOptions, "Touch grass?");
+        
+            if (choice == 1) {
+                UI::ShowMessage(playerName + " decides to risk it all, and touch grass...\n  How brave. Truly an icon. What an absolute unit.");
+            }
+            else {
+                UI::ShowMessage(playerName + " will not be touching grass this time.\n  Big not worth.");
+            }
+        
+        } while (choice != 1);
+
+        UI::ShowMessage("OAK", "WHAT THE F$*& ARE YOU DOING?!");
+        UI::ShowMessage("OAK", "Are you NUTS? There's BUGS IN THAT GRASS!!");
+        UI::ShowMessage("OAK", "Meet me in my lab IMMEDIATELY.\n  We need to talk.");
+
     }
 };
