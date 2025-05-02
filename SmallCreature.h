@@ -66,21 +66,44 @@ public:
 		return type2;
 	}
 
+	int GetCurrentHP() {
+		// TODO return HP field
+		return 0;
+	}
+
+	// Accept a move to be learned
 	bool LearnMove(Move move) {
+		
+		// Initialize a default value
 		bool result = false;
 		
+		// Search through the entire move list
 		for (int i = 0; i < moves.size(); i++) {
+
+			// Copy a reference of the current move
+			// in the position we're looking at
 			Move currentMove = moves[i];
 
+			// Check the type value of the Move object
+			// and if the type is NONE, then it's a default
+			// object, and thus, an empty space.
 			if (currentMove.GetType() == Type::NONE) {
-				moves[i] = currentMove;
+	
+				// Replace that empty space with the 
+				// move parameter that has been passed
+				moves[i] = move;
 				
+				// true
 				result = true;
 
+				// Stop looking
 				break;
 			}
 		}
 
+		// TODO: Add an announcement that the move was learned
+
+		// Return the result
 		return result;
 	}
 
@@ -95,6 +118,8 @@ public:
 
 			if (i == position - 1) {
 				moves[i] = Move();
+			
+				// TODO: Add an announcment that the move was forgotten
 			}
 		}
 	}

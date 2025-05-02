@@ -1,16 +1,8 @@
-#include <iostream>
-#include <string>
-#include "Events.h"
+#include "Game.h"
 
 int main() // primary entry point
 {
-    std::string playerName = Events::Introduction();
-    Events::WakeUp(playerName);
-
-    // TODO: Player walks outside
-    // TODO: Player has some options options
-    // TODO: Prof Oak's lab
-    // TODO: Choose a pokemon
-
+	Game game;
+	game.Start();
 
 } // this is where application end

@@ -3,32 +3,27 @@
 
 class Events {
 public:
-	static std::string Introduction() {
+    static void Introduction(Trainer& player, Trainer& rival) {
         std::string profOak = "OAK";
-        std::string playerName = "";
-        std::string rivalName = "";
-
 
         UI::ShowMessage(profOak, "Welcome to the World of Pokemon!");
         UI::ShowMessage(profOak, "Pokemon just normal wild animals, \n  but we trap them and make them fight!");
 
-
-        playerName = UI::PromptUser("OAK: What's your name?", "Name");
+        std::string playerName = UI::PromptUser("OAK: What's your name?", "Name");
+        player.SetName(playerName);
 
         UI::ShowMessage(profOak, "Hey, " + playerName + "!");
         UI::ShowMessage(profOak, "My grandson is a real little...hassle.\n  So I don't think of him much...");
         UI::ShowMessage(profOak, "He's like your bully, right?\n  What was his name again?");
 
-        rivalName = UI::PromptUser("What's professor Oak's grandon's name?", "Rival");
+        std::string rivalName = UI::PromptUser("What's professor Oak's grandon's name?", "Rival");
+        rival.SetName(rivalName);
 
         UI::ShowMessage(profOak, "Yea, f&*$ " + rivalName + ". All my homies hate, " + rivalName + ".");
 
-
         // Player wakes up in their room
         UI::ShowMessage(playerName + " wakes up in their room...");
-
-        return playerName;
-	}
+    }
 
     static void WakeUp(std::string playerName) {
         std::vector<std::string> menuOptions = {
@@ -48,23 +43,16 @@ public:
 
             switch (choice) {
             case 1:
-
                 UI::ShowMessage(playerName + " decided to go back to sleep.\n  Today just ain't the day.");
-                invalid = false;
                 break;
             case 2:
                 UI::ShowMessage(playerName + " just decided to play games all day.");
-
-                invalid = false;
                 break;
             case 3:
                 UI::ShowMessage(playerName + " checks their PC but nothing has happened.");
-
-                invalid = false;
                 break;
             case 4:
                 UI::ShowMessage(playerName + " decides to go outside and maybe touch some grass.\n  What an icon.");
-
                 invalid = false;
                 break;
             default:
@@ -73,5 +61,106 @@ public:
                 break;
             }
         } while (invalid);
+    }
+
+    static void TouchGrass(std::string playerName) {
+        int choice = 0;
+        std::vector<std::string> menuOptions = {
+            "Touch grass",
+            "Do not touch grass"
+        };
+
+        UI::ShowMessage(playerName + " walks out into the sunlight,\n  and wanders around for a bit...");
+
+        do {
+            UI::ShowMessage(playerName + " stops briefly in front of a patch of grass\n  and begins to get a dangerous idea...");
+
+            choice = UI::DisplayMenu(menuOptions, "Touch grass?");
+        
+            if (choice == 1) {
+                UI::ShowMessage(playerName + " decides to risk it all, and touch grass...\n  How brave. Truly an icon. What an absolute unit.");
+            }
+            else {
+                UI::ShowMessage(playerName + " will not be touching grass this time.\n  Big not worth.");
+            }
+        
+        } while (choice != 1);
+
+        UI::ShowMessage("OAK", "WHAT THE F$*& ARE YOU DOING?!");
+        UI::ShowMessage("OAK", "Are you NUTS? There's BUGS IN THAT GRASS!!");
+        UI::ShowMessage("OAK", "Meet me in my lab IMMEDIATELY.\n  We need to talk.");
+
+    }
+
+    static void SmallCreatureSelection(Trainer& player, Trainer& rival) {
+        UI::ShowMessage(player.GetName() + " walks into a Prof Oak's weird lab.");
+        UI::ShowMessage(player.GetName() + " notices that dumb idiot " + rival.GetName() + "\n  standing in the corner.");
+
+        UI::ShowMessage("OAK", "I crammed small creatures into these tiny balls.");
+        UI::ShowMessage("OAK", "Select one that will be forced to be your bodyguard.");
+        
+        Move scratch = Move("Scratch", 40, Type::NORMAL, 1, 35);
+        Move tackle = Move("Tackle", 40, Type::NORMAL, 1, 35);
+
+        SmallCreature charGuy = SmallCreature(
+            "Charguy", 5,
+            52, 43, 50,
+            Type::FIRE, Type::NONE,
+            std::vector<Move>(3)
+        );
+
+        charGuy.LearnMove(scratch);
+
+        SmallCreature bulbFrog = SmallCreature(
+            "Bulbfrog", 5,
+            49, 49, 65,
+            Type::GRASS, Type::POISON,
+            std::vector<Move>(3)
+        );
+
+        bulbFrog.LearnMove(tackle);
+
+        SmallCreature splasher = SmallCreature(
+            "Splasher", 5,
+            48, 65, 50,
+            Type::WATER, Type::NONE,
+            std::vector<Move>(3)
+        );
+
+        splasher.LearnMove(tackle);
+
+        std::vector<std::string> menuOptions = {
+            charGuy.GetName(), bulbFrog.GetName(), splasher.GetName()
+        };
+
+        int choice = 0;
+
+        do {
+            choice = UI::DisplayMenu(menuOptions, "Choose a Small Creature");
+
+            switch (choice) {
+            case 1:
+                // get charguy
+                player.AddSmallCreatureToTeam(charGuy);
+                rival.AddSmallCreatureToTeam(splasher);
+
+                break;
+            case 2:
+                // get bulbfrog
+                player.AddSmallCreatureToTeam(bulbFrog);
+                rival.AddSmallCreatureToTeam(charGuy);
+
+                break;
+            case 3:
+                // get splasher
+                player.AddSmallCreatureToTeam(splasher);
+                rival.AddSmallCreatureToTeam(bulbFrog);
+                
+                break;
+            default:
+                // error handling
+                break;
+            }
+        } while (choice < 1 || choice > menuOptions.size());
     }
 };

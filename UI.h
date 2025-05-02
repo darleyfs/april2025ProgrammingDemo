@@ -2,6 +2,8 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <thread>
+#include <chrono>
 
 class UI {
     static void ClearScreen() {
@@ -18,7 +20,15 @@ public:
 
         std::cout << divider << std::endl;
 
-        std::cout << "  " << message << "\n" << std::endl;
+        std::cout << "  ";
+        
+        for (char character : message) {
+            std::cout << character;
+        
+            std::this_thread::sleep_for(std::chrono::milliseconds(20));
+        }
+            
+        std::cout << "\n" << std::endl;
 
         std::cout << divider << std::endl;
 
@@ -34,7 +44,15 @@ public:
 
         std::cout << divider << std::endl;
 
-        std::cout << "  " << subject << ": " << message << "\n" << std::endl;
+        std::cout << "  " << subject << ": ";
+            
+        for (char character : message) {
+            std::cout << character;
+
+            std::this_thread::sleep_for(std::chrono::milliseconds(20));
+        }
+            
+        std::cout << "\n" << std::endl;
 
         std::cout << divider << std::endl;
 

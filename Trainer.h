@@ -22,6 +22,10 @@ public:
 		return name;
 	}
 
+	void SetName(std::string _name) {
+		name = _name;
+	}
+
 	std::vector<SmallCreature> GetTeam() {
 		return team;
 	}
@@ -58,6 +62,8 @@ public:
 				break;
 			}
 		}
+
+		// TODO: Add an announcement that a small creature was added!s
 
 		return result;
 	}
