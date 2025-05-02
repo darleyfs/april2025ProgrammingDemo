@@ -3,31 +3,26 @@
 
 class Events {
 public:
-	static std::string Introduction() {
+    static void Introduction(Trainer& player, Trainer& rival) {
         std::string profOak = "OAK";
-        std::string playerName = "";
-        std::string rivalName = "";
-
 
         UI::ShowMessage(profOak, "Welcome to the World of Pokemon!");
         UI::ShowMessage(profOak, "Pokemon just normal wild animals, \n  but we trap them and make them fight!");
 
-
-        playerName = UI::PromptUser("OAK: What's your name?", "Name");
+        std::string playerName = UI::PromptUser("OAK: What's your name?", "Name");
+        player.SetName(playerName);
 
         UI::ShowMessage(profOak, "Hey, " + playerName + "!");
         UI::ShowMessage(profOak, "My grandson is a real little...hassle.\n  So I don't think of him much...");
         UI::ShowMessage(profOak, "He's like your bully, right?\n  What was his name again?");
 
-        rivalName = UI::PromptUser("What's professor Oak's grandon's name?", "Rival");
+        std::string rivalName = UI::PromptUser("What's professor Oak's grandon's name?", "Rival");
+        rival.SetName(rivalName);
 
         UI::ShowMessage(profOak, "Yea, f&*$ " + rivalName + ". All my homies hate, " + rivalName + ".");
 
-
         // Player wakes up in their room
         UI::ShowMessage(playerName + " wakes up in their room...");
-
-        return playerName;
 	}
 
     static void WakeUp(std::string playerName) {
@@ -48,23 +43,16 @@ public:
 
             switch (choice) {
             case 1:
-
                 UI::ShowMessage(playerName + " decided to go back to sleep.\n  Today just ain't the day.");
-                invalid = false;
                 break;
             case 2:
                 UI::ShowMessage(playerName + " just decided to play games all day.");
-
-                invalid = false;
                 break;
             case 3:
                 UI::ShowMessage(playerName + " checks their PC but nothing has happened.");
-
-                invalid = false;
                 break;
             case 4:
                 UI::ShowMessage(playerName + " decides to go outside and maybe touch some grass.\n  What an icon.");
-
                 invalid = false;
                 break;
             default:

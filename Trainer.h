@@ -22,6 +22,10 @@ public:
 		return name;
 	}
 
+	void SetName(std::string _name) {
+		name = _name;
+	}
+
 	std::vector<SmallCreature> GetTeam() {
 		return team;
 	}

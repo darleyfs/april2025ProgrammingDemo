@@ -131,6 +131,11 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Events.h" />
+    <ClInclude Include="Game.h" />
+    <ClInclude Include="Move.h" />
+    <ClInclude Include="SmallCreature.h" />
+    <ClInclude Include="Trainer.h" />
+    <ClInclude Include="Type.h" />
     <ClInclude Include="UI.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
