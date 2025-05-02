@@ -91,4 +91,76 @@ public:
         UI::ShowMessage("OAK", "Meet me in my lab IMMEDIATELY.\n  We need to talk.");
 
     }
+
+    static void SmallCreatureSelection(Trainer& player, Trainer& rival) {
+        UI::ShowMessage(player.GetName() + " walks into a Prof Oak's weird lab.");
+        UI::ShowMessage(player.GetName() + " notices that dumb idiot " + rival.GetName() + "\n  standing in the corner.");
+
+        UI::ShowMessage("OAK", "I crammed small creatures into these tiny balls.");
+        UI::ShowMessage("OAK", "Select one that will be forced to be your bodyguard.");
+        
+        Move scratch = Move("Scratch", 40, Type::NORMAL, 1, 35);
+        Move tackle = Move("Tackle", 40, Type::NORMAL, 1, 35);
+
+        SmallCreature charGuy = SmallCreature(
+            "Charguy", 5,
+            52, 43, 50,
+            Type::FIRE, Type::NONE,
+            std::vector<Move>(3)
+        );
+
+        charGuy.LearnMove(scratch);
+
+        SmallCreature bulbFrog = SmallCreature(
+            "Bulbfrog", 5,
+            49, 49, 65,
+            Type::GRASS, Type::POISON,
+            std::vector<Move>(3)
+        );
+
+        bulbFrog.LearnMove(tackle);
+
+        SmallCreature splasher = SmallCreature(
+            "Splasher", 5,
+            48, 65, 50,
+            Type::WATER, Type::NONE,
+            std::vector<Move>(3)
+        );
+
+        splasher.LearnMove(tackle);
+
+        std::vector<std::string> menuOptions = {
+            charGuy.GetName(), bulbFrog.GetName(), splasher.GetName()
+        };
+
+        int choice = 0;
+
+        do {
+            choice = UI::DisplayMenu(menuOptions, "Choose a Small Creature");
+
+            switch (choice) {
+            case 1:
+                // get charguy
+                player.AddSmallCreatureToTeam(charGuy);
+                rival.AddSmallCreatureToTeam(splasher);
+
+                break;
+            case 2:
+                // get bulbfrog
+                player.AddSmallCreatureToTeam(bulbFrog);
+                rival.AddSmallCreatureToTeam(charGuy);
+
+                break;
+            case 3:
+                // get splasher
+                player.AddSmallCreatureToTeam(splasher);
+                rival.AddSmallCreatureToTeam(bulbFrog);
+                
+                break;
+            default:
+                // error handling
+                break;
+            }
+        } while (choice < 1 || choice > menuOptions.size());
+    }
 };

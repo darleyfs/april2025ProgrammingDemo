@@ -17,9 +17,9 @@ public:
 		Events::Introduction(player, rival);
 		Events::WakeUp(player.GetName());
 		Events::TouchGrass(player.GetName());
-		// TODO: Player walks outside
-		// TODO: Player has some options options
 		// TODO: Prof Oak's lab
+		Events::SmallCreatureSelection(player, rival);
+		
 		// TODO: Choose a pokemon
 	}
 };
